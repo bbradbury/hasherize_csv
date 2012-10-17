@@ -1,11 +1,17 @@
 require "hasherize_csv/version"
 
 module HasherizeCsv
-   class Salesforce
+   module DefaultOpts
+     SALESFORCE = { :separator => "\r", :value_pattern => /\"(.*?)\"/m }
+     
+   end
+ 
+   class Csv 
      attr_accessor :keys, :file, :separator
      def initialize file, opts = {}
 	@file = file
-	@separator = opts[:separator] || "\r"
+	@separator = opts[:separator] || "\n"
+        @value_pattern = opts[:value_pattern] || /([\s\w_-]+),?/
 	@keys = []
 	next_line { |l| @keys = values_from_line l if !l.nil? }
      end
@@ -13,9 +19,7 @@ module HasherizeCsv
      def next 
 	next_line { |l|
 	   return nil if l.nil? 
-
 	   yield hashify_values( values_from_line l ) 
-	   return true
 	}
      end
  
@@ -38,7 +42,7 @@ module HasherizeCsv
      end
 
      def values_from_line line
-	line.scan(/\"(.*?)\"/m).flatten
+	line.scan(@value_pattern).flatten
      end
    end
 end

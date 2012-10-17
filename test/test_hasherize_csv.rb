@@ -4,7 +4,7 @@ require 'hasherize_csv'
 class HasherizeCsvTest < Test::Unit::TestCase
   def setup 
     @f = File.new(File.join(File.expand_path(File.dirname(__FILE__)),"sample_csv.csv"))
-    @csv = HasherizeCsv::Salesforce.new(@f)
+    @csv = HasherizeCsv::Csv.new(@f, HasherizeCsv::DefaultOpts::SALESFORCE)
   end
 
   def teardown
