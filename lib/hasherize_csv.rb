@@ -3,7 +3,6 @@ require "hasherize_csv/version"
 module HasherizeCsv
    module DefaultOpts
      SALESFORCE = { :separator => "\r", :value_pattern => /\"(.*?)\"/m }
-     
    end
  
    class Csv 
