@@ -39,7 +39,8 @@ class HasherizeCsvTest < Test::Unit::TestCase
        assert_equal [{"Heading1"=>"Item1", "Heading2"=>"Item2", "H_EA_3__c"=>"Item3"}, 
                      {"Heading1"=>"Email", 
                       "Heading2"=>"SUP MAN\n\nWE HAVE LOTS OF MULTILINE EMAILS IN CAPS\n\nTHEY ALSO HAVE LINEBREAKS IN THEM",
-                      "H_EA_3__c"=>"FinalField"}], result
+                      "H_EA_3__c"=>"FinalField"},
+                     {"Heading1"=>"Blank1", "Heading2"=>"", "H_EA_3__c"=>""}], result
   end
 
 end

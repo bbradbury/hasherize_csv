@@ -15,25 +15,28 @@ module HasherizeCsv
 	next_line { |l| @keys = values_from_line l if !l.nil? }
      end
 
-     def next 
+     def next_item 
 	next_line { |l|
-	   return nil if l.nil? 
+          if l.nil?
+	   yield nil
+          else
 	   yield hashify_values( values_from_line l ) 
+          end
 	}
      end
  
      def each
-        while(1) do
-	   self.next { |hash|
-	     return nil if hash.nil?
+        while(1) 
+	   self.next_item { |hash|
+	     return if hash.nil?
              yield hash
 	   }
         end 
      end
 
     private 
-     def next_line 
-	yield(@file.gets(@separator))
+     def next_line
+	  yield(@file.gets(@separator)) 
      end
 
      def hashify_values values
