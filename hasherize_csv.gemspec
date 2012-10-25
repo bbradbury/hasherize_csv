@@ -8,9 +8,9 @@ Gem::Specification.new do |gem|
   gem.version       = HasherizeCsv::VERSION
   gem.authors       = ["Brent Bradbury"]
   gem.email         = ["brent@brentium.com"]
-  gem.description   = %q{Hasherizes a csv file line by line}
+  gem.description   = %q{Turns csv files into hashes without reading the entire csv into memory}
   gem.summary       = %q{Hasherizes a csv file line by line}
-  gem.homepage      = ""
+  gem.homepage      = "https://github.com/bbradbury/hasherize_csv"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
