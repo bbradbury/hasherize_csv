@@ -2,7 +2,7 @@ require "hasherize_csv/version"
 
 module HasherizeCsv
   module DefaultOpts
-    DEFAULT = { :separator => "\n", :value_pattern => /([^,]+),?/ }
+    DEFAULT = { :separator => "\n", :value_pattern => /([^,]*),?/ }
     SALESFORCE = { :separator => "\r", :value_pattern => /\"(.*?)\"/m }
   end
 
