@@ -1,29 +1,30 @@
 # HasherizeCsv
+[![Build Status](https://travis-ci.org/bbradbury/hasherize_csv.png)](https://travis-ci.org/bbradbury/hasherize_csv)
 
-TODO: Write a gem description
+Dead simple CSV parsing, with configurable regex selectors if required. 
+Reads line-by-line, so you can parse big CSV files without running out of memory.
 
-## Installation
+### Simple case
+Given sample_csv.csv
+```csv
+Col1,Col2,Col3
+Val1,Val2,Val3
+Val4,Val5,Val6
+```
 
-Add this line to your application's Gemfile:
+and
+```ruby
+require 'hasherize_csv'
+@f = File.new("sample_csv.csv")
+@csv = HasherizeCsv::Csv.new(@f)
 
-    gem 'hasherize_csv'
+@csv.each do |hash|
+   puts hash.inspect
+end
+```
 
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install hasherize_csv
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Contributing
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+The output will be
+```
+{'Col1' => 'Val1', 'Col2' => 'Val2', 'Col3' => 'Val3'}
+{'Col1' => 'Val4', 'Col2' => 'Val5', 'Col3' => 'Val6'}
+```
