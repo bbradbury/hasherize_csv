@@ -30,7 +30,7 @@ The output will be
 {'Col1' => 'Val4', 'Col2' => 'Val5', 'Col3' => 'Val6'}
 ```
 
-### Complex case: parse strange line endings (\r) and elegantly select values from between quotes
+### Complex case: parse strange line endings and elegantly select values
 Given complex_sample.csv
 ```csv
 "Col1";"Col2";"Col3"\r
