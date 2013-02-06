@@ -43,7 +43,7 @@ Oh my, newlines in the record!";"Val6"\r
 and
 ```ruby
 require 'hasherize_csv'
-@f = File.new("sample_csv.csv")
+@f = File.new("complex_sample.csv")
 
 #HasherizeCsv yields the value of the first match group in the :value_pattern regex
 @csv = HasherizeCsv::Csv.new(@f, :separator => "\r", :value_pattern => /\"(.*?)\"/m)
