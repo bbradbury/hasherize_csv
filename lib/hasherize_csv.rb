@@ -7,37 +7,35 @@ module HasherizeCsv
   end
 
   class Csv 
+    include Enumerable
     attr_accessor :keys, :file, :separator
     def initialize file, opts = {}
       @file = file
       @separator = opts[:separator] || DefaultOpts::DEFAULT[:separator]
       @value_pattern = opts[:value_pattern] || DefaultOpts::DEFAULT[:value_pattern]
       @keys = []
-      next_line { |l| @keys = values_from_line l if !l.nil? }
-    end
-
-    def next_item 
-      next_line { |l|
-        if l.nil?
-          yield nil
-        else
-          yield hashify_values( values_from_line l ) 
-        end
-      }
+      @keys =  values_from_line next_line 
     end
 
     def each
-      while(1) 
-        self.next_item { |hash|
-          return if hash.nil?
-          yield hash
-        }
+      return self.to_enum if !block_given?
+
+      until (hash = next_item).nil?
+        yield hash
       end 
     end
 
     private 
+    def next_item 
+      if (l = next_line).nil?
+        return nil
+      else
+        return hashify_values( values_from_line l ) 
+      end
+    end
+
     def next_line
-      yield(@file.gets(@separator) ? $_.chomp : $_) 
+      @file.gets(@separator) ? $_.chomp : $_
     end
 
     def hashify_values values

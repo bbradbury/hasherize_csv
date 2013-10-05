@@ -25,6 +25,13 @@ class HasherizeCsvTest < Test::Unit::TestCase
     assert_equal ["Heading1", "Heading2", "H_EA_3__c"], @csv.keys
   end
 
+  def test_hash_file_enumerator
+    result = []
+    enumerator = @csv.each
+
+    assert_equal({"Heading1"=>"Item1", "Heading2"=>"Item2", "H_EA_3__c"=>"Item3"}, enumerator.next)
+  end
+
   def test_hash_file
     result = []
     @csv.each { |hash|
