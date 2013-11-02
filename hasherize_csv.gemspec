@@ -11,6 +11,7 @@ Gem::Specification.new do |gem|
   gem.description   = %q{Turns csv files into hashes without reading the entire csv into memory}
   gem.summary       = %q{Hasherizes a csv file line by line}
   gem.homepage      = "https://github.com/bbradbury/hasherize_csv"
+  gem.license       = "LGPL-3"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
